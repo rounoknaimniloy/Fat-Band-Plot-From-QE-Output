@@ -38,7 +38,6 @@ o	Output file: Ga2O3.pdos.out
 
 2. Input Format
 There are two field WRITE_PDOS and PLOT_PDOS. It is possible to run both field at one input file or run them separately. Make sure you run WRITE_PDOS before PLOT_PDOS. Each field end with / like quantum espresso input file. Each flag ends with a comma(,). It is a must. Command can be written after ! mark. Matrix must be written in single line. Each row is separated by semicolon (;) and full matrix should be enclosed by square bracket []. See Want_States & and xy_limit usage. Cell type input also must be written in one line and each cell is separated by ; or , and full cell is enclosed by curly bracket {}. 
-
 &WRITE_PDOS 
 prefix="Ga2O3",         ! Mandatory: Material prefix used in your QE files
 inputdir=".",             ! Mandatory: Directory containing the QE output files
