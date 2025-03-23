@@ -1,0 +1,27 @@
+&WRITE_PDOS 
+prefix="Ga2O3",            ! Mandatory: Material prefix used in your QE files
+inputdir=".",              ! Mandatory: Directory containing the QE output files
+Nspin_Type="spin_up_down", ! Mandatory
+Delimiter="band",          ! Mandatory: Specify the input from which kpoints is being read. 
+outdir=".",                ! Optional: Output directory for generated files
+Overwrite=1,               ! Optional: 0 or 1 (whether to overwrite existing files)
+Efermi=1,                  ! Optional: 0 or 1 (1 fermi is shifted to 0eV.0 fermi is kept as it is.)
+/
+
+&PLOT_PDOS
+prefix="Ga2O3",                                              ! Mandatory if &WRITE_PDOS field is not present
+inputdir="./Ga2O3.fat_band",                                 ! Mandatory if &WRITE_PDOS field is not present; 
+Delimiter="band",                                            ! Specify from which input kpoints is being read. 
+Want_States=[1 2 9 10;3 6 11 0; 4 7 0 0;5 8 13 14],          ! Mandatory
+Legend_Details={"\itC_s"; "\itB_py"; "\itB_px"; "\itB_pz"},  ! Optional:
+outdir=".",                                                  ! Optional: Output directory for plots
+Band_Limit=[1 202],                                          ! Optional: Specify band limits as [min_band, max_band] Color_Matrix=[0 0 1; 1 0 0; 0 1 0; 1 1 0],  ! Colors assigned to each orbital 
+Sorting_Type="ascend",                                       ! Optional: "ascend" or "descend" for sorting bands
+Weight_Multiplier = 150,                                     ! Optional:
+Justify_Zero = 0.02,                                         ! Optional: Small value adjustment for zero weights
+Draw_Fermi = 1,                                              ! Optional: 0 or 1 (whether to draw the Fermi level)
+Aspect_Ratio = [0.6 1 1],                                    ! Optional: Aspect ratio of the figure 
+xy_limit=[NaN, NaN; NaN, NaN],                               ! Optional: X and Y axis limits (use NaN for auto-scaling)
+Interpoint=100,                                              ! Optional: Positive integer to adjust interpolation points
+Figure_Spec={"Times", "bold", 12},                           ! Optional: Figure font specifications
+/
