@@ -1110,7 +1110,7 @@ function [numBut,xstut,ystut,wstut,ppput,ppputt]=Fat_Band_QE(input_file)
             
     
             if isempty(varargin{11})
-                justify_zero=0.01;
+                justify_zero=0.0001;
             else
                 justify_zero=varargin{11};
             end
@@ -1513,7 +1513,7 @@ function [numBut,xstut,ystut,wstut,ppput,ppputt]=Fat_Band_QE(input_file)
             
     
             if isempty(varargin{11})
-                justify_zero=0.01;
+                justify_zero=0.0001;
             else
                 justify_zero=varargin{11};
             end
@@ -1902,7 +1902,7 @@ function [numBut,xstut,ystut,wstut,ppput,ppputt]=Fat_Band_QE(input_file)
                     linee=data{jvdg,1};
                     components = strsplit(linee);
                     if length(components)>4
-                        temp_string=strrep(components{end},'!','');
+                        temp_string=strrep(components{6},'!','');
                         if ~isempty(temp_string)
                             len_ktick=len_ktick+1;
                         end
@@ -1919,11 +1919,17 @@ function [numBut,xstut,ystut,wstut,ppput,ppputt]=Fat_Band_QE(input_file)
                     kcord(jj,2) = str2double(components{2});
                     kcord(jj,3) = str2double(components{3});
                     if length(components)>4
-                        temp_string=strrep(components{end},'!','');
+                        temp_string=strrep(components{6},'!','');
                         if ~isempty(temp_string)
                             jjj=jjj+1;
-                            kpathh{jjj}=temp_string;
-                            Ktick_index(jjj)=jj;
+			    switch temp_string
+                                case 'gG'
+                                    kpathh{jjj} = 'Γ';
+				    Ktick_index(jjj)=jj;
+                                otherwise
+                                    kpathh{jjj}=temp_string;
+				    Ktick_index(jjj)=jj;
+                            end
                         end
                     end
                 end
@@ -1943,7 +1949,7 @@ function [numBut,xstut,ystut,wstut,ppput,ppputt]=Fat_Band_QE(input_file)
                     linee=data{jvdg,1};
                     components = strsplit(linee);
                     if length(components)>4
-                        temp_string=strrep(components{end},'!','');
+                        temp_string=strrep(components{6},'!','');
                         if ~isempty(temp_string)
                             len_ktick=len_ktick+1;
                         end
@@ -1960,11 +1966,17 @@ function [numBut,xstut,ystut,wstut,ppput,ppputt]=Fat_Band_QE(input_file)
                     kcord(jj,2) = str2double(components{2});
                     kcord(jj,3) = str2double(components{3});
                     if length(components)>4
-                        temp_string=strrep(components{end},'!','');
+                        temp_string=strrep(components{6},'!','');
                         if ~isempty(temp_string)
                             jjj=jjj+1;
-                            kpathh{jjj}=temp_string;
-                            Ktick_index(jjj)=jj;
+                            switch temp_string
+                                case 'gG'
+                                    kpathh{jjj} = 'Γ';
+				    Ktick_index(jjj)=jj;
+                                otherwise
+                                    kpathh{jjj}=temp_string;
+				    Ktick_index(jjj)=jj;
+                            end
                         end
                     end
                 end
