@@ -186,12 +186,12 @@ function [numBut,xstut,ystut,wstut,ppput,ppputt]=Fat_Band_QE(input_file)
             %\033[1mBold Text\033[0m
         
 	        fprintf(fileID,"%*sProgram Started on : %s\n",tabn,'',t);
-            fprintf(fileID,"\n%*s*****************Author Information*****************\n\n",tabn,'');
-	        fprintf(fileID,"%*sMD. NILOY KHAN\n%*sMSc in EEE, BUET(on going)\n%*sEmail: khanniloy534@gmail.com\n%*sPhone: +8801619141513\n",tabn,'',tabn,'',tabn,'',tabn,'');
+            %fprintf(fileID,"\n%*s*****************Author Information*****************\n\n",tabn,'');
+	        %fprintf(fileID,"%*sMD. NILOY KHAN\n%*sMSc in EEE, BUET(on going)\n%*sEmail: khanniloy534@gmail.com\n%*sPhone: +8801619141513\n",tabn,'',tabn,'',tabn,'',tabn,'');
             
 	        fprintf("%*s<strong>Program Started on : %s</strong>\n",tabn,'',t);
-            fprintf("\n%*s*****************Author Information*****************\n\n",tabn,'');
-            fprintf("%*s[\bMD. NILOY KHAN]\b\n%*sMSc in EEE, BUET(on going)\n%*sEmail: khanniloy534@gmail.com\n%*sPhone: +8801619141513\n",tabn,'',tabn,'',tabn,'',tabn,'');
+            %fprintf("\n%*s*****************Author Information*****************\n\n",tabn,'');
+            %fprintf("%*s[\bMD. NILOY KHAN]\b\n%*sMSc in EEE, BUET(on going)\n%*sEmail: khanniloy534@gmail.com\n%*sPhone: +8801619141513\n",tabn,'',tabn,'',tabn,'',tabn,'');
             
             fprintf(fileID,"%*s****************************************************\n\n",tabn,'');
             fprintf("%*s****************************************************\n\n",tabn,'');
@@ -1110,7 +1110,7 @@ function [numBut,xstut,ystut,wstut,ppput,ppputt]=Fat_Band_QE(input_file)
             
     
             if isempty(varargin{11})
-                justify_zero=0.0001;
+                justify_zero=0.01;
             else
                 justify_zero=varargin{11};
             end
@@ -1826,24 +1826,24 @@ function [numBut,xstut,ystut,wstut,ppput,ppputt]=Fat_Band_QE(input_file)
                 end
             
                 % Initialize the new array
-                kpathtickk_array = kpathtickk;
-                kpathtickk_org = kpathtickk;
+                kpathtickk_array = kpathtickk(1);
+                kpathtickk_org = kpathtickk(1);
             
                 % Iterate through the array to adjust values
-                % for i = 2:length(kpathtickk)
-                %     diff = kpathtickk(i) - kpathtickk(i-1);
-                %     if diff == 1 || diff == 2 || diff == 3
-                %         % Ensure minimum separation of 2
-                %         kpathtickk_array(i-1) = kpathtickk(i-1)-2;
-                %         kpathtickk_array(i) = kpathtickk(i)+2;
-                %         kpathtickk_org(i-1) = kpathtickk(i)- 2;
-                %         kpathtickk_org(i) = kpathtickk(i)+ 2;
-                % 
-                %     else
-                %         kpathtickk_array(i) = kpathtickk(i);
-                %         kpathtickk_org(i) = kpathtickk(i);
-                %     end
-                % end
+                for i = 2:length(kpathtickk)
+                    diff = kpathtickk(i) - kpathtickk(i-1);
+                    if diff == 1 || diff == 2 || diff == 3
+                        % Ensure minimum separation of 2
+                        kpathtickk_array(i-1) = kpathtickk(i-1)-2;
+                        kpathtickk_array(i) = kpathtickk(i)+2;
+                        kpathtickk_org(i-1) = kpathtickk(i)- 2;
+                        kpathtickk_org(i) = kpathtickk(i)+ 2;
+            
+                    else
+                        kpathtickk_array(i) = kpathtickk(i);
+                        kpathtickk_org(i) = kpathtickk(i);
+                    end
+                end
             case 'crystal_b'
                 jj=0;
                 for jvdg=nbnd_ind+2:nbnd_ind+Knumber+1
@@ -1855,9 +1855,14 @@ function [numBut,xstut,ystut,wstut,ppput,ppputt]=Fat_Band_QE(input_file)
                     kcord(jj,3) = str2double(components{3});
                     kp_pointss(jj) = str2double(components{4});
                     if length(components)>4
-                        temp_string=strrep(components{end},'!','');
+                        temp_string=strrep(components{6},'!','');
                         if ~isempty(temp_string)
-                            kpathh{jj}=temp_string;
+                            switch temp_string
+                                case 'gG'
+                                    kpathh{jj} = 'Γ';
+                                otherwise
+                                    kpathh{jj}=temp_string;
+                            end
                         end
                     end
     
@@ -1873,24 +1878,24 @@ function [numBut,xstut,ystut,wstut,ppput,ppputt]=Fat_Band_QE(input_file)
                 end
             
                 % Initialize the new array
-                kpathtickk_array = kpathtickk;
-                kpathtickk_org = kpathtickk;
+                kpathtickk_array = kpathtickk(1);
+                kpathtickk_org = kpathtickk(1);
             
                 % Iterate through the array to adjust values
-                % for i = 2:length(kpathtickk)
-                %     diff = kpathtickk(i) - kpathtickk(i-1);
-                %     if diff == 1 || diff == 2 || diff == 3
-                %         % Ensure minimum separation of 2
-                %         kpathtickk_array(i-1) = kpathtickk(i-1)-2;
-                %         kpathtickk_array(i) = kpathtickk(i)+2;
-                %         kpathtickk_org(i-1) = kpathtickk(i)- 2;
-                %         kpathtickk_org(i) = kpathtickk(i)+ 2;
-                % 
-                %     else
-                %         kpathtickk_array(i) = kpathtickk(i);
-                %         kpathtickk_org(i) = kpathtickk(i);
-                %     end
-                % end
+                for i = 2:length(kpathtickk)
+                    diff = kpathtickk(i) - kpathtickk(i-1);
+                    if diff == 1 || diff == 2 || diff == 3
+                        % Ensure minimum separation of 2
+                        kpathtickk_array(i-1) = kpathtickk(i-1)-2;
+                        kpathtickk_array(i) = kpathtickk(i)+2;
+                        kpathtickk_org(i-1) = kpathtickk(i)- 2;
+                        kpathtickk_org(i) = kpathtickk(i)+ 2;
+            
+                    else
+                        kpathtickk_array(i) = kpathtickk(i);
+                        kpathtickk_org(i) = kpathtickk(i);
+                    end
+                end
             case 'crystal'
                 len_ktick=0;
                 for jvdg=nbnd_ind+2:nbnd_ind+Knumber+1
