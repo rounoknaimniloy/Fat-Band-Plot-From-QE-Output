@@ -1,0 +1,10 @@
+&PROJWFC
+    prefix         = "wte2",
+    outdir         = '.',
+    kresolveddos   = .true.,
+    degauss        = 0.01,
+    filpdos        = "wte2_final1.k",
+    DeltaE         = 0.01,
+    lsym           = .true.,   ! Keep symmetry analysis for clarity
+    no_overlap     = .true.,   ! Suppress some overlap information for simplicity
+/

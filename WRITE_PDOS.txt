@@ -1,0 +1,12 @@
+
+&WRITE_PDOS
+prefix="wte2", !mandatory
+inputdir="C:\Users\IT PRO\Downloads\Fatband\Fatband without SOC", !mandatory
+
+Nspin_Type="no_soc", !mandatory , can take one of the folllowing: "no_soc" or "soc" or "spin_up_down"
+Delimiter="band", !mandatory , can take one of the folllowing: "scf" or "nscf" or "band"
+outdir=".", !optional
+Overwrite=1, !optional , can be 0 or 1
+Efermi=1, !optional , can be 0 or 1
+
+/
